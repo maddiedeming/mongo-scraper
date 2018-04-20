@@ -1,0 +1,37 @@
+.background-image {
+    background-image: url(../img/newspaper.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: 35%;
+    height: 500px;
+    position: relative;
+}
+
+.header-title, .navbar-brand, a, a:hover {
+    color: #f67f72;
+    text-decoration: none;
+}
+
+.nav-item .nav-link {
+    color: slategray;
+}
+
+.nav-item.active .nav-link {
+    color: black;
+}
+
+.header-title {
+    position: absolute;
+    top: 50%;
+    right: 30%;
+    font-size: 50px;
+}
+
+.container {
+    margin-top: 10px;
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 10px;
+}
