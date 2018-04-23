@@ -1,0 +1,42 @@
+<div class="row">
+    <div data-id="{{_id}}" class="card bg-light mx-auto">
+        <div class="card-body">
+            <a href="{{link}}"><h5 class="card-title">{{title}}</h5></a>
+            <h6 class="card-subtitle mb-2 text-muted">{{byline}}</h6>
+            <p class="card-text">{{summary}}</p>
+            {{#if saved}}
+                <button class="btn btn-danger" onclick="unsaveButton(this)">Unsave</button>
+                <button class="btn btn-info noteButton" data-title='"{{title}}" Notes' data-container="body" data-toggle="popover" data-placement="right" data-html="true" data-content='
+                    <div class="container">
+                        {{#each notes}}
+                        <div class="row">
+                            <div class="input-group mt-1">
+                                 <input data-id="{{this._id}}" readonly value="{{this.body}}" class="form-control">
+                                <div class="input-group-append">
+                                    <button data-id="{{_id}}" onclick="deleteNote(this)" class="btn btn-outline-danger" type="button">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        <div class="row mt-3">
+                            <div class="input-group mb-1">
+                                <input id="noteInput" placeholder="Add a new note." type="text" class="form-control">
+                                <div class="input-group-append">
+                                    <button data-id="{{_id}}" onclick="saveNote(this)" class="btn btn-outline-success" type="button">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                            <p><span id="characters">255</span> Characters Remaining</p>
+                        </div>
+                    </div>'>Notes
+                </button>`
+            {{/if}}
+            {{#unless saved}}
+                <button class="btn btn-success" onclick="saveButton(this)">Save</button>
+            {{/unless}}
+        </div>
+    </div>
+</div>

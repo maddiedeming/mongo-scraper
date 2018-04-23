@@ -1,0 +1,10 @@
+{{> layout/navbar }}
+{{> layout/background }}
+<div class="container">
+    <div id="articles">
+        {{#each articles}}
+            {{> layout/articles }}
+        {{/each}}
+    </div>
+    {{> layout/loading }}
+</div>

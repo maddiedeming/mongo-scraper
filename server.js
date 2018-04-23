@@ -7,65 +7,19 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// Scraper Setup
-const axios = require("axios");
-const cheerio = require("cheerio");
+// Handlebars
+const exphbs = require("express-handlebars");
+app.engine('hbs', exphbs({ defaultLayout: "main", extname: '.hbs' }));
+app.set('view engine', '.hbs');
 
 // Database Setup
 const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 mongoose.connect("mongodb://localhost/mongoScraper");
-const db = require("./models");
-const PORT = 8080;
-
-// GET: /scrape
-app.get("/scrape", function(req, res){
-    axios.get("https://www.nytimes.com/").then(function(response){
-        var $ = cheerio.load(response.data);
-        $(".collection article h2").each(function(i, element){
-            var result = {};
-            result.title = $(this).children("a").text();
-            result.byline = $(this).siblings(".byline").text();
-            result.link = $(this).children("a").attr("href");
-            result.summary = $(this).siblings(".summary").text();
-            if(result.title && result.link && result.summary){
-                db.Article.create(result).then(function(dbArticle){
-                    return res.json(dbArticle);
-                }).catch(function(err){});
-            }
-        })
-        res.redirect("/");
-    });
-});
-
-// GET: /articles
-app.get("/articles", function(req, res){
-    db.Article.find({}).then(function(result){
-        res.json(result);
-    }).catch(function(err){});
-});
-
-// GET: /savedArticles
-app.get("/savedArticles", function(req, res){
-    db.Article.find({"saved": true}).then(function(result){
-        res.json(result);
-    }).catch(function(err){});
-});
-
-// GET: /articles/:id
-app.get("/articles/:id", function(req, res){
-    // db.Article.find({}).then(function(result){
-    //     res.json(result);
-    // }).catch(function(err){});
-});
-
-// POST: /articles/:id
-app.post("/articles/:id", function(req, res){
-    db.Article.create(req.body).then(function(result) {
-        return db.Article.findOneAndUpdate({}, { $push: { articles: Article._id } });
-    }).catch(function(err){});
-});
+require("./controllers/controller.js")(app, ObjectId);
 
 // Listener
+const PORT = 8080;
 app.listen(PORT, function(){
     console.log(`Running on: http://localhost:${PORT}/`);
 });

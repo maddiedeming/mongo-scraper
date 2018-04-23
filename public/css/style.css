@@ -7,9 +7,13 @@
     position: relative;
 }
 
-.header-title, .navbar-brand, a, a:hover {
+.navbar-brand, a, a:hover {
     color: #f67f72;
     text-decoration: none;
+}
+.header-title {
+    color: white;
+    text-decoration: none;  
 }
 
 .nav-item .nav-link {
@@ -34,4 +38,13 @@
 .card {
     width: 100%;
     margin-bottom: 10px;
+}
+
+.loader {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
