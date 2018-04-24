@@ -15,7 +15,6 @@ module.exports = function(app, ObjectId){
     });
     // GET: /saved
     app.get("/saved", function(req, res){
-        // find({saved: true})
         db.Article.aggregate([
             { $match: { saved: true } },
             { $lookup: {
@@ -27,7 +26,6 @@ module.exports = function(app, ObjectId){
             }
         ]).then(function(result,i){
                 var hbsObject = { articles: result };
-                console.log(result[0].notes)
                 res.render('index',hbsObject);
         }).catch(function(err){ res.json(err) });
     });
@@ -48,10 +46,10 @@ module.exports = function(app, ObjectId){
                         result.link = link;
                         result.summary = summary;
                         db.Article.create(result).then(function(results){
-                            res.json(results)
+                            // console.log(results)
                         }).catch(function(err){ res.json(err) });
                     }
-                }).catch(function(err){ res.json(err) });
+                });
                 res.redirect('/');
             }).catch(function(err){ res.json(err) });
         }).catch(function(err){ res.json(err) });

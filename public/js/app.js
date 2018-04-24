@@ -22,6 +22,7 @@ $("#scrapeLink").click(function(){
             $("#scrapeMessage").hide();
             setTimeout(function(){ 
                 $("#loading").modal("hide");
+                location.reload();
             }, 3000);
         }
     }).catch(function(err){ console.log(err); });
