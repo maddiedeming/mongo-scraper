@@ -15,9 +15,9 @@ app.set('view engine', '.hbs');
 // Database Setup
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var PROD_MONGODB = process.env.PROD_MONGODB || "mongodb://localhost/mongoHeadlines";
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
+mongoose.connect(PROD_MONGODB);
 require("./controllers/controller.js")(app, ObjectId);
 
 // Listener
