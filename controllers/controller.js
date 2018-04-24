@@ -35,19 +35,22 @@ module.exports = function(app, ObjectId){
             axios.get("https://www.nytimes.com/").then(function(response){
                 var $ = cheerio.load(response.data);
                 $(".collection article h2").each(function (i, element){
+                    var storyId = $(this).parent("article").attr("data-story-id");
                     var title = $(this).children("a").text();
                     var byline = $(this).siblings(".byline").text();
                     var link = $(this).children("a").attr("href");
                     var summary = $(this).siblings(".summary").text();
-                    if(title && byline && link && summary){
+                    if(storyId && title && byline && link && summary){
                         var result = {};
+                        result.storyId = storyId;
                         result.title = title;
                         result.byline = byline;
                         result.link = link;
                         result.summary = summary;
                         db.Article.create(result).then(function(results){
                             // console.log(results)
-                        }).catch(function(err){ res.json(err) });
+                            
+                        }).catch(function(err){  });
                     }
                 });
                 res.redirect('/');

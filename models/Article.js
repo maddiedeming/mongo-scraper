@@ -1,6 +1,11 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
+    storyId: {
+        type: Number,
+        required: true,
+        unique: true
+    },
     title: {
         type: String,
         required: true
@@ -11,11 +16,11 @@ var ArticleSchema = new Schema({
     },
     byline: {
         type: String,
-        required: false
+        required: true
     },
     summary: {
         type: String,
-        required: false
+        required: true
     },
     saved: {
         type: Boolean,

@@ -26,11 +26,7 @@ npm install
   - [x] Summary - a short summary of the article
   - [x] URL - the url to the original article
   - [x] Feel free to add more content to your database (photos, bylines, and so on).
-- [ ] Users should also be able to leave comments on the articles displayed and revisit them later:
+- [x] Users should also be able to leave comments on the articles displayed and revisit them later:
   - [x] The comments should be saved to the database as well and associated with their articles
   - [x] Users should also be able to delete comments left on articles
-  - [ ] All stored comments should be visible to every user
-### Additional:
-- [ ] Whenever you scrape a site for stories, make sure an article isn't already represented in your database before saving it; we don't want duplicates.
-- [ ] Don't just clear out your database and populate it with scraped articles whenever a user accesses your site.
-- [ ] If your app deletes stories every time someone visits, your users won't be able to see any comments except the ones that they post.
+  - [x] All stored comments should be visible to every user
