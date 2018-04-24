@@ -21,7 +21,7 @@ mongoose.connect(PROD_MONGODB);
 require("./controllers/controller.js")(app, ObjectId);
 
 // Listener
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, function(){
     console.log(`Running on: http://localhost:${PORT}/`);
 });
