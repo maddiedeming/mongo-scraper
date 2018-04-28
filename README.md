@@ -20,7 +20,7 @@ npm install
 #### Terminal 1
 `mongod`
 #### Terminal 2
-`mongod`
+`mongo`
 #### Terminal 3
 `node server.js`
 ## Requirements
