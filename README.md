@@ -16,7 +16,12 @@ git clone https://github.com/maddiedeming/mongo-scraper.git
 cd mongo-scraper/
 npm install
 ```
-### Command
+### Commands
+#### Terminal 1
+`mongod`
+#### Terminal 2
+`mongod`
+#### Terminal 3
 `node server.js`
 ## Requirements
 ### Create an app that accomplishes the following:
